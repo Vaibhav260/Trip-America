@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>East Coast Adventure 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf6ec;
+    --warm-white: #fffdf8;
+    --ink: #1a1208;
+    --rust: #c2410c;
+    --rust-light: #ea580c;
+    --gold: #d97706;
+    --sage: #4a7c59;
+    --muted: #78716c;
+    --border: #e7ddd0;
+    --card-bg: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 80px 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(194,65,12,0.25) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 80%, rgba(217,119,6,0.15) 0%, transparent 55%);
+  }
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: 1.05;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #f97316;
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: #a8a29e;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+  }
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #f97316;
+    font-weight: 700;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #78716c;
+    margin-top: 2px;
+  }
+
+  /* NAV TABS */
+  .nav-wrap {
+    background: var(--ink);
+    border-bottom: 1px solid #2a2016;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-tabs {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 14px 22px;
+    background: none;
+    border: none;
+    color: #78716c;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+  .tab-btn:hover { color: var(--cream); }
+  .tab-btn.active {
+    color: #f97316;
+    border-bottom-color: #f97316;
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* PHASE HEADER */
+  .phase-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .phase-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .phase-icon.green { background: #dcfce7; }
+  .phase-icon.blue  { background: #dbeafe; }
+  .phase-icon.amber { background: #fef3c7; }
+  .phase-icon.rose  { background: #ffe4e6; }
+  .phase-meta { flex: 1; }
+  .phase-meta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .phase-meta p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* DAY CARD */
+  .day-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .day-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .day-badge {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .day-badge.rust { background: var(--rust); }
+  .day-badge.gold { background: var(--gold); }
+  .day-badge.sage { background: var(--sage); }
+
+  .day-title {
+    flex: 1;
+  }
+  .day-title h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .day-title .day-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .day-chevron {
+    font-size: 18px;
+    color: var(--muted);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .day-card.open .day-chevron { transform: rotate(180deg); }
+
+  .day-body {
+    display: none;
+    padding: 0 24px 24px;
+    border-top: 1px solid var(--border);
+  }
+  .day-card.open .day-body { display: block; }
+
+  /* ACTIVITIES */
+  .activity-list { margin-top: 16px; }
+  .activity-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dashed #ede8e0;
+  }
+  .activity-item:last-child { border-bottom: none; }
+  .activity-time {
+    font-size: 11px;
+    color: var(--rust);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    min-width: 70px;
+    padding-top: 2px;
+  }
+  .activity-info { flex: 1; }
+  .activity-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .activity-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+  .activity-emoji {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* TIPS */
+  .tip-box {
+    background: #fef9f0;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 16px;
+    font-size: 12.5px;
+    color: #92400e;
+    line-height: 1.6;
+  }
+  .tip-box strong { display: block; margin-bottom: 4px; color: #78350f; }
+
+  /* NOTE CARDS */
+  .note-card {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: #14532d;
+    line-height: 1.6;
+  }
+  .note-card.blue {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1e3a5f;
+  }
+
+  /* ROUTE CARD */
+  .route-card {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .route-card::after {
+    content: '→';
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 48px;
+    opacity: 0.08;
+  }
+  .route-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .route-card .route-detail {
+    font-size: 12px;
+    color: #a8a29e;
+    line-height: 1.7;
+  }
+  .route-stops {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .route-stop {
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: #f5f5f4;
+  }
+
+  /* NYC GRID */
+  .nyc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 600px) { .nyc-grid { grid-template-columns: 1fr; } }
+  .nyc-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .nyc-emoji { font-size: 22px; flex-shrink: 0; }
+  .nyc-text h4 { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .nyc-text p { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+
+  /* OVERVIEW */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  .ov-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+  }
+  .ov-emoji { font-size: 28px; margin-bottom: 10px; }
+  .ov-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  .ov-value { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-top: 4px; }
+
+  .timeline-strip {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .tl-row {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    gap: 14px;
+    transition: background 0.15s;
+  }
+  .tl-row:hover { background: #fdf9f4; }
+  .tl-row:last-child { border-bottom: none; }
+  .tl-dates {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--rust);
+    min-width: 100px;
+  }
+  .tl-place {
+    font-size: 14px;
+    font-weight: 500;
+    flex: 1;
+  }
+  .tl-days {
+    font-size: 11px;
+    background: #f4f0ea;
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .tl-icon { font-size: 18px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">✈ East Coast Road Trip — 2025</div>
+    <h1>20 Days of <em>Adventure</em><br>Across America</h1>
+    <p class="hero-sub">Raleigh · Shenandoah · Washington D.C. · Philadelphia · New York City</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">20</div><div class="stat-label">Days</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Destinations</div></div>
+      <div class="stat"><div class="stat-num">~1,000</div><div class="stat-label">Miles by Car</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Experiences</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+    <button class="tab-btn" onclick="showTab('raleigh')">🌿 Raleigh</button>
+    <button class="tab-btn" onclick="showTab('drive')">🚗 Drive North</button>
+    <button class="tab-btn" onclick="showTab('dc')">🏛 Washington DC</button>
+    <button class="tab-btn" onclick="showTab('nyc')">🗽 New York</button>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- OVERVIEW -->
+  <div class="section active" id="overview">
+    <div class="phase-header">
+      <div class="phase-icon green">🗺️</div>
+      <div class="phase-meta">
+        <h2>Trip at a Glance</h2>
+        <p>June 4–23 · Full itinerary overview</p>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="ov-card"><div class="ov-emoji">🌿</div><div class="ov-label">Phase 1</div><div class="ov-value">Raleigh</div><div style="font-size:11px;color:var(--muted);margin-top:4px">June 4–9</div></div>
+      <div class="ov-card"><div class="ov-emoji">🏔️</div><div class="ov-label">Phase 2</div><div class="ov-value">Drive North</div><div style="font-size:11px;color:var(--muted);margin-top:4px">June 10</div></div>
+      <div class="ov-card"><div class="ov-emoji">🏛️</div><div class="ov-label">Phase 3</div><div class="ov-value">Washington DC</div><div style="font-size:11px;color:var(--muted);margin-top:4px">June 11–13</div></div>
+      <div class="ov-card"><div class="ov-emoji">🗽</div><div class="ov-label">Phase 4</div><div class="ov-value">New York City</div><div style="font-size:11px;color:var(--muted);margin-top:4px">June 15–23</div></div>
+    </div>
+
+    <div class="timeline-strip">
+      <div class="tl-row"><span class="tl-icon">✈️</span><span class="tl-dates">Jun 4</span><span class="tl-place">Arrival in Raleigh (6:00 AM) · Rest day</span><span class="tl-days">Day 1</span></div>
+      <div class="tl-row"><span class="tl-icon">🌊</span><span class="tl-dates">Jun 4</span><span class="tl-place">Lake Raleigh — rest & settle in</span><span class="tl-days">Day 1</span></div>
+      <div class="tl-row"><span class="tl-icon">🎓</span><span class="tl-dates">Jun 5</span><span class="tl-place">NC State Campus Tour · Birthday Party Dinner</span><span class="tl-days">Day 2</span></div>
+      <div class="tl-row"><span class="tl-icon">🦁</span><span class="tl-dates">Jun 6</span><span class="tl-place">Campus · Lake Johnson · Aloha Safari · Mall</span><span class="tl-days">Day 3</span></div>
+      <div class="tl-row"><span class="tl-icon">🎓</span><span class="tl-dates">Jun 7</span><span class="tl-place">Graduation · Home-cooked dinner · Cary Downtown Park</span><span class="tl-days">Day 4</span></div>
+      <div class="tl-row"><span class="tl-icon">🏖️</span><span class="tl-dates">Jun 8</span><span class="tl-place">Lake Jordan · Museum of Art · Duke & Durham</span><span class="tl-days">Day 5</span></div>
+      <div class="tl-row"><span class="tl-icon">🎉</span><span class="tl-dates">Jun 9</span><span class="tl-place">Graduation day · Stadium walk · Dinner together</span><span class="tl-days">Day 6</span></div>
+      <div class="tl-row"><span class="tl-icon">🚗</span><span class="tl-dates">Jun 10</span><span class="tl-place">Drive: Raleigh → Richmond → Shenandoah → Luray → DC</span><span class="tl-days">Day 7</span></div>
+      <div class="tl-row"><span class="tl-icon">🏛️</span><span class="tl-dates">Jun 11</span><span class="tl-place">Natural History Museum · National Mall · Downtown DC</span><span class="tl-days">Day 8</span></div>
+      <div class="tl-row"><span class="tl-icon">✈️</span><span class="tl-dates">Jun 12</span><span class="tl-place">Air & Space Museum · Lincoln Memorial</span><span class="tl-days">Day 9</span></div>
+      <div class="tl-row"><span class="tl-icon">🏛️</span><span class="tl-dates">Jun 13</span><span class="tl-place">White House · Museum of Art DC · Pack up</span><span class="tl-days">Day 10</span></div>
+      <div class="tl-row"><span class="tl-icon">🌸</span><span class="tl-dates">Jun 14</span><span class="tl-place">Drive: DC → Baltimore → Longwood Gardens → Philly → NYC</span><span class="tl-days">Day 11</span></div>
+      <div class="tl-row"><span class="tl-icon">🗽</span><span class="tl-dates">Jun 15–23</span><span class="tl-place">New York City — 9 days of exploration</span><span class="tl-days">Days 12–20</span></div>
+    </div>
+
+    <div class="note-card blue">
+      <strong style="font-weight:600">⚠️ Important Heads Up</strong>
+      Aloha Safari Park is closed Tuesdays — check which day June 6 falls on and confirm it's open before you go. NC Museum of Art is also closed Mon–Tue. Longwood Gardens is closed on Tuesdays too — same check needed for June 14.
+    </div>
+  </div>
+
+  <!-- RALEIGH -->
+  <div class="section" id="raleigh">
+    <div class="phase-header">
+      <div class="phase-icon green">🌿</div>
+      <div class="phase-meta">
+        <h2>Raleigh, North Carolina</h2>
+        <p>June 4–9 · NC State, lakes, graduation & celebrations</p>
+      </div>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge">Jun 4</div>
+        <div class="day-title"><h3>Arrival Day</h3><div class="day-subtitle">Rest · Lake Raleigh</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">✈️</span><div class="activity-info"><div class="activity-name">Arrive Raleigh (6:00 AM)</div><div class="activity-desc">Long journey — go straight to accommodation and rest up.</div></div><span class="activity-time">6:00 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">😴</span><div class="activity-info"><div class="activity-name">Rest & Recover</div><div class="activity-desc">Sleep in, grab breakfast, unpack and settle in.</div></div><span class="activity-time">Morning</span></div>
+          <div class="activity-item"><span class="activity-emoji">🌊</span><div class="activity-info"><div class="activity-name">Lake Raleigh (NC State Campus)</div><div class="activity-desc">Light evening walk by the lake. Beautiful sunset spot — fishing docks, paved trail, calm water. Free after 5 PM parking.</div></div><span class="activity-time">Evening</span></div>
+          <div class="activity-item"><span class="activity-emoji">🍽️</span><div class="activity-info"><div class="activity-name">Dinner — light & local</div><div class="activity-desc">Keep it simple — order in or grab food near campus.</div></div><span class="activity-time">7:30 PM</span></div>
+        </div>
+        <div class="tip-box"><strong>💡 Tip</strong>Don't overplan today. The trip is long, rest is your priority. The lake is a 10-minute drive from most campus-area stays.</div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge rust">Jun 5</div>
+        <div class="day-title"><h3>Campus Day + Birthday Dinner 🎂</h3><div class="day-subtitle">NC State Tour · Celebration</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">🎓</span><div class="activity-info"><div class="activity-name">NC State Campus Walk</div><div class="activity-desc">Explore the main campus — Brickyard, Belltower, D.H. Hill Library, Memorial Belltower. Great photo spots all around.</div></div><span class="activity-time">10:00 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">☕</span><div class="activity-info"><div class="activity-name">Campus Café Stop</div><div class="activity-desc">Grab coffee and lunch near the student union area.</div></div><span class="activity-time">12:30 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🛍️</span><div class="activity-info"><div class="activity-name">Free Afternoon</div><div class="activity-desc">Rest, explore the Hillsborough Street area, browse shops near campus.</div></div><span class="activity-time">2:00 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🎂</span><div class="activity-info"><div class="activity-name">Birthday Party Dinner</div><div class="activity-desc">Special celebration dinner! Pick a nice restaurant — Raleigh has great Indian options like Saffron, Tandoor India, or go all out at a steakhouse.</div></div><span class="activity-time">7:00 PM</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge gold">Jun 6</div>
+        <div class="day-title"><h3>Safari + Lake + Mall 🦁</h3><div class="day-subtitle">Aloha Safari Park · Lake Johnson · Shopping</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">🦒</span><div class="activity-info"><div class="activity-name">Aloha Safari Park — Cameron, NC</div><div class="activity-desc">~1 hr drive south. Open 10 AM–5 PM (closed Tues!). Feed giraffes, meet kangaroos, walk-through safari. Allow 2–3 hrs.</div></div><span class="activity-time">10:00 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🏞️</span><div class="activity-info"><div class="activity-name">Lake Johnson Park</div><div class="activity-desc">Beautiful 4.5-mile trail around the lake. Kayak/SUP rentals available. Great for an evening stroll. Free entry.</div></div><span class="activity-time">4:30 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🛍️</span><div class="activity-info"><div class="activity-name">Crabtree Valley Mall or North Hills</div><div class="activity-desc">For a bit of shopping and dinner options.</div></div><span class="activity-time">7:00 PM</span></div>
+        </div>
+        <div class="tip-box"><strong>⚠️ Confirm Aloha is open Jun 6</strong>If June 6 is a Tuesday, Aloha Safari Park will be CLOSED. In that case, swap to Lake Jordan for the day instead.</div>
+      </div>
+    </div>
+
+    <!-- Day 4 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge sage">Jun 7</div>
+        <div class="day-title"><h3>Graduation Day 🎓 + Cary Park</h3><div class="day-subtitle">Ceremony · Home cooking · Cary Downtown</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">🎓</span><div class="activity-info"><div class="activity-name">Graduation Ceremony</div><div class="activity-desc">The big day! PNC Arena or Reynolds Coliseum — arrive early for good seats. Celebrate every moment.</div></div><span class="activity-time">Morning</span></div>
+          <div class="activity-item"><span class="activity-emoji">🍳</span><div class="activity-info"><div class="activity-name">Home-cooked Celebration Meal</div><div class="activity-desc">Cook together — makes it personal and memorable. Dal, biryani, something special.</div></div><span class="activity-time">Afternoon</span></div>
+          <div class="activity-item"><span class="activity-emoji">🏞️</span><div class="activity-info"><div class="activity-name">Downtown Cary Park</div><div class="activity-desc">Beautiful new park with fountains, pond, bridges, and splash pad. Perfect evening walk. Right next to Cary Library.</div></div><span class="activity-time">6:30 PM</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 5 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge">Jun 8</div>
+        <div class="day-title"><h3>Lake Jordan + Duke + Museum of Art 🎨</h3><div class="day-subtitle">Nature · History · Art</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">🏖️</span><div class="activity-info"><div class="activity-name">Jordan Lake</div><div class="activity-desc">Beach-like lake with sandy shores, perfect for swimming. 45 min from Raleigh. Bring a picnic! Can rent kayaks too.</div></div><span class="activity-time">9:00 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🏛️</span><div class="activity-info"><div class="activity-name">Duke University & Durham</div><div class="activity-desc">Duke Chapel is stunning — Gothic architecture. Stroll the West Campus quad. Browse Durham's vibrant downtown after.</div></div><span class="activity-time">1:00 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🖼️</span><div class="activity-info"><div class="activity-name">NC Museum of Art</div><div class="activity-desc">Completely FREE. Outdoor sculpture park is massive. Indoor galleries span Egyptian, African, American, and European art. Close at 5 PM.</div></div><span class="activity-time">3:30 PM</span></div>
+        </div>
+        <div class="tip-box"><strong>⚠️ Museum closed Mon–Tue</strong>NC Museum of Art is open Wed–Sun only. Check the date and adjust if needed.</div>
+      </div>
+    </div>
+
+    <!-- Day 6 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge rust">Jun 9</div>
+        <div class="day-title"><h3>Final Raleigh Day 🏟️</h3><div class="day-subtitle">Graduation · Stadium · Send-off dinner</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">🎓</span><div class="activity-info"><div class="activity-name">Graduation Events / Ceremony (if second day)</div><div class="activity-desc">Some grad programs hold multiple days. Check the schedule and attend what's relevant.</div></div><span class="activity-time">Morning</span></div>
+          <div class="activity-item"><span class="activity-emoji">🏟️</span><div class="activity-info"><div class="activity-name">Carter-Finley Stadium Walk</div><div class="activity-desc">NC State's iconic football stadium — walk around, great photo spots for a college sports fan.</div></div><span class="activity-time">2:00 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🍽️</span><div class="activity-info"><div class="activity-name">Send-off Dinner</div><div class="activity-desc">Last night in Raleigh — make it count! Downtown Raleigh Glenwood South has great restaurant options.</div></div><span class="activity-time">7:00 PM</span></div>
+        </div>
+        <div class="note-card">Pack tonight! Tomorrow is the big drive north. Start early — it's a long day with multiple scenic stops.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRIVE -->
+  <div class="section" id="drive">
+    <div class="phase-header">
+      <div class="phase-icon amber">🚗</div>
+      <div class="phase-meta">
+        <h2>The Drive North</h2>
+        <p>June 10 · Raleigh → Washington DC (via Shenandoah + Luray)</p>
+      </div>
+    </div>
+
+    <div class="route-card">
+      <h3>Raleigh → Washington DC</h3>
+      <div class="route-detail">~7–8 hours total driving · Best to leave by 7 AM · Arrive DC by 9–10 PM</div>
+      <div class="route-stops">
+        <span class="route-stop">🌿 Raleigh</span>
+        <span class="route-stop">➜ Richmond, VA</span>
+        <span class="route-stop">➜ Shenandoah NP</span>
+        <span class="route-stop">➜ Luray Caverns</span>
+        <span class="route-stop">➜ Washington DC (night)</span>
+      </div>
+    </div>
+
+    <div class="day-card open">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge rust">Jun 10</div>
+        <div class="day-title"><h3>Epic Scenic Drive 🏔️</h3><div class="day-subtitle">Mountains, Caverns, History</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">🚗</span><div class="activity-info"><div class="activity-name">Depart Raleigh</div><div class="activity-desc">Early start is essential. Fill up the tank and grab road trip snacks!</div></div><span class="activity-time">7:00 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🏛️</span><div class="activity-info"><div class="activity-name">Richmond, Virginia — Quick Stop</div><div class="activity-desc">~2.5 hrs from Raleigh. Grab breakfast/coffee. Walk the canal riverfront or Capitol Square briefly (30 min). Historic city.</div></div><span class="activity-time">9:30 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🏔️</span><div class="activity-info"><div class="activity-name">Shenandoah National Park — Skyline Drive</div><div class="activity-desc">Drive the famous Skyline Drive (~40 mph scenic road). Stop at overlooks for jaw-dropping Blue Ridge Mountain views. Don't miss Stony Man or Hawksbill overlook. Allow 2–2.5 hrs including stops.</div></div><span class="activity-time">11:30 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🍔</span><div class="activity-info"><div class="activity-name">Lunch near Luray</div><div class="activity-desc">Small town dining near the caverns entrance.</div></div><span class="activity-time">2:00 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🌑</span><div class="activity-info"><div class="activity-name">Luray Caverns</div><div class="activity-desc">Largest caverns on the East Coast! 54°F inside — bring a light layer. The Stalacpipe Organ is incredible. Self-guided tour takes ~1–1.5 hrs. Tickets ~$32/adult. Book in advance!</div></div><span class="activity-time">2:30 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🌆</span><div class="activity-info"><div class="activity-name">Drive to Washington DC</div><div class="activity-desc">~2 hrs from Luray. Arrive and check into hotel. Rest up — DC is action-packed!</div></div><span class="activity-time">5:00 PM</span></div>
+        </div>
+        <div class="tip-box"><strong>💡 Road Trip Tips</strong>Shenandoah entry fee: $35/vehicle (America the Beautiful annual pass saves money if you visit multiple parks). Luray Caverns: Book online in advance, especially on weekends. Temperature inside is 54°F year-round — bring a sweater!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DC -->
+  <div class="section" id="dc">
+    <div class="phase-header">
+      <div class="phase-icon blue">🏛️</div>
+      <div class="phase-meta">
+        <h2>Washington, D.C.</h2>
+        <p>June 11–13 · 3 days · Museums, monuments & history</p>
+      </div>
+    </div>
+
+    <!-- DC Day 1 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge">Jun 11</div>
+        <div class="day-title"><h3>Natural History + National Mall 🦕</h3><div class="day-subtitle">Smithsonian · Monuments · Downtown</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">🦕</span><div class="activity-info"><div class="activity-name">Smithsonian Natural History Museum</div><div class="activity-desc">FREE entry. Hope Diamond, dinosaur halls, ocean exhibit, human origins. Plan 2–3 hours. Opens 10 AM.</div></div><span class="activity-time">10:00 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🥗</span><div class="activity-info"><div class="activity-name">Lunch on the Mall</div><div class="activity-desc">Food trucks near the Mall or grab something quick at a museum café.</div></div><span class="activity-time">1:00 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🌿</span><div class="activity-info"><div class="activity-name">Walk the National Mall</div><div class="activity-desc">Washington Monument → Reflecting Pool → Lincoln Memorial. Stunning views all the way down. ~1.5 mile walk.</div></div><span class="activity-time">2:00 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🛍️</span><div class="activity-info"><div class="activity-name">Downtown DC / Georgetown Shopping</div><div class="activity-desc">Georgetown has great cafes, boutiques, and the famous C&O Canal. Or visit Dupont Circle area.</div></div><span class="activity-time">5:00 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🏛️</span><div class="activity-info"><div class="activity-name">US Capitol — Exterior View</div><div class="activity-desc">Walk around the Capitol building exterior. Beautifully lit at night.</div></div><span class="activity-time">8:00 PM</span></div>
+        </div>
+        <div class="note-card blue">All Smithsonian museums are FREE. No tickets needed. Just walk in!</div>
+      </div>
+    </div>
+
+    <!-- DC Day 2 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge rust">Jun 12</div>
+        <div class="day-title"><h3>Air & Space + Lincoln Memorial 🚀</h3><div class="day-subtitle">Aviation history · Iconic monuments</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">🚀</span><div class="activity-info"><div class="activity-name">Smithsonian Air & Space Museum</div><div class="activity-desc">Wright Brothers' Flyer, Apollo 11 command module, space suits, IMAX films. Incredible for aviation and space fans. FREE.</div></div><span class="activity-time">10:00 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🍽️</span><div class="activity-info"><div class="activity-name">Lunch — The Mall area</div><div class="activity-desc">Try the District ChopHouse or grab food near Penn Quarter.</div></div><span class="activity-time">1:00 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🏛️</span><div class="activity-info"><div class="activity-name">Lincoln Memorial</div><div class="activity-desc">Walk the steps where MLK gave his speech. The 19-foot Lincoln statue is breathtaking. Views of the Reflecting Pool are spectacular, especially at golden hour.</div></div><span class="activity-time">3:00 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🌊</span><div class="activity-info"><div class="activity-name">Vietnam & Korean War Memorials</div><div class="activity-desc">Just steps from Lincoln Memorial. Deeply moving — the Wall of Names at Vietnam Memorial is unforgettable.</div></div><span class="activity-time">4:00 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🌅</span><div class="activity-info"><div class="activity-name">Sunset from the Tidal Basin</div><div class="activity-desc">Jefferson Memorial across the water. Magical at dusk.</div></div><span class="activity-time">6:30 PM</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DC Day 3 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge gold">Jun 13</div>
+        <div class="day-title"><h3>White House + Art Museum 🏳️</h3><div class="day-subtitle">Power + Culture · Pack up</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">🏳️</span><div class="activity-info"><div class="activity-name">White House — Lafayette Square</div><div class="activity-desc">View from the front lawn fence. Photo stop. Walk around to the South Lawn side too. Can't go inside without a congressional tour.</div></div><span class="activity-time">9:30 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🖼️</span><div class="activity-info"><div class="activity-name">National Gallery of Art</div><div class="activity-desc">One of the world's great art museums — completely FREE. East and West buildings. Monet, Da Vinci, Vermeer. Allow 2 hrs.</div></div><span class="activity-time">11:00 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🥘</span><div class="activity-info"><div class="activity-name">Lunch + Final DC Stroll</div><div class="activity-desc">Grab a nice meal — try Old Ebbitt Grill (DC classic near the White House) or Rasika for Indian food.</div></div><span class="activity-time">1:30 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🧳</span><div class="activity-info"><div class="activity-name">Pack Up & Rest</div><div class="activity-desc">Tomorrow is another scenic drive day. Rest early!</div></div><span class="activity-time">4:00 PM</span></div>
+        </div>
+        <div class="tip-box"><strong>💡 DC Metro Tip</strong>Get a SmarTrip card for DC Metro — easy and cheap to get around. Avoid driving/parking in central DC, it's a nightmare!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NYC -->
+  <div class="section" id="nyc">
+    <div class="phase-header">
+      <div class="phase-icon rose">🗽</div>
+      <div class="phase-meta">
+        <h2>New York City</h2>
+        <p>June 15–23 · 9 days · The city that never sleeps</p>
+      </div>
+    </div>
+
+    <div class="route-card">
+      <h3>DC → NYC Drive (June 14)</h3>
+      <div class="route-detail">~4 hours direct. Stop at Baltimore briefly (30 min), then Longwood Gardens in PA (3-4 hrs), then Philly, then NYC by evening.</div>
+      <div class="route-stops">
+        <span class="route-stop">🏛️ DC</span>
+        <span class="route-stop">➜ Baltimore</span>
+        <span class="route-stop">➜ Longwood Gardens PA</span>
+        <span class="route-stop">➜ Philadelphia</span>
+        <span class="route-stop">➜ NYC (eve)</span>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-badge">Jun 14</div>
+        <div class="day-title"><h3>Drive Day: DC → NYC 🌸</h3><div class="day-subtitle">Longwood Gardens · Philadelphia</div></div>
+        <div class="day-chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="activity-list">
+          <div class="activity-item"><span class="activity-emoji">🦀</span><div class="activity-info"><div class="activity-name">Baltimore — Quick Stop</div><div class="activity-desc">Inner Harbor for 30–45 min. Grab famous Maryland crab cakes for breakfast!</div></div><span class="activity-time">8:30 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🌸</span><div class="activity-info"><div class="activity-name">Longwood Gardens, PA</div><div class="activity-desc">Breathtaking botanical garden — one of the most spectacular in America. Massive conservatory, fountains, orchid room. Tickets ~$30. Allow 3–4 hrs. Closed Tuesdays!</div></div><span class="activity-time">11:00 AM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🔔</span><div class="activity-info"><div class="activity-name">Philadelphia — Liberty Bell & Old City</div><div class="activity-desc">Quick 30–45 min stop. View the Liberty Bell (free) and Independence Hall exterior. Historic!  </div></div><span class="activity-time">3:30 PM</span></div>
+          <div class="activity-item"><span class="activity-emoji">🗽</span><div class="activity-info"><div class="activity-name">Arrive New York City</div><div class="activity-desc">Check in to hotel. Walk out and get your first NYC skyline moment!</div></div><span class="activity-time">7:00 PM</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin:28px 0 16px;">New York City — 9 Days Spread 🗽</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">Here's the best way to distribute your NYC highlights across 9 days:</p>
+
+    <div class="nyc-grid">
+      <div class="nyc-item"><div class="nyc-emoji">🌳</div><div class="nyc-text"><h4>Day 1 — Central Park + Uptown</h4><p>Central Park walk, Bethesda Fountain, Bow Bridge, The Met Museum (on 5th), Roosevelt Island tram.</p></div></div>
+      <div class="nyc-item"><div class="nyc-emoji">🌆</div><div class="nyc-text"><h4>Day 2 — Midtown Icons</h4><p>Top of the Rock (Rockefeller Center), Times Square, The Vessel, Broadway show tickets.</p></div></div>
+      <div class="nyc-item"><div class="nyc-emoji">⛴️</div><div class="nyc-text"><h4>Day 3 — Statue of Liberty</h4><p>Take the Staten Island Ferry (FREE, best views!). Or book ferry to Liberty Island. Ellis Island included.</p></div></div>
+      <div class="nyc-item"><div class="nyc-emoji">🌉</div><div class="nyc-text"><h4>Day 4 — Brooklyn Day</h4><p>Walk Brooklyn Bridge (start Manhattan side), DUMBO neighborhood, Brooklyn Bridge Park, sideline views, Jane's Carousel.</p></div></div>
+      <div class="nyc-item"><div class="nyc-emoji">🏛️</div><div class="nyc-text"><h4>Day 5 — Lower Manhattan</h4><p>9/11 Memorial & Museum, Wall Street, Charging Bull, Oculus (WTC Transit Hub), Battery Park.</p></div></div>
+      <div class="nyc-item"><div class="nyc-emoji">🎭</div><div class="nyc-text"><h4>Day 6 — Culture Day</h4><p>MoMA (Museum of Modern Art — paid, but incredible), Washington Square Park, Flatiron Building, Harry Potter NYC store.</p></div></div>
+      <div class="nyc-item"><div class="nyc-emoji">🧲</div><div class="nyc-text"><h4>Day 7 — Mercer Labs + Discoveries</h4><p>Mercer Labs (immersive art), New York Public Library, Grand Central Terminal, High Line park.</p></div></div>
+      <div class="nyc-item"><div class="nyc-emoji">🎨</div><div class="nyc-text"><h4>Day 8 — Free Friday Art</h4><p>Brooklyn Museum (Free on Fridays evenings 5-11PM!), Madame Tussauds, Greenwich Village dinner.</p></div></div>
+      <div class="nyc-item"><div class="nyc-emoji">🛍️</div><div class="nyc-text"><h4>Day 9 — Final Day</h4><p>Last-minute shopping (SoHo, Canal St), Akshardham Temple NJ (if desired, 45 min drive), evening departure prep.</p></div></div>
+    </div>
+
+    <div class="tip-box">
+      <strong>🗽 NYC Practical Tips</strong>
+      • <strong>MTA Subway</strong>: Get an OMNY card (tap to pay) or use your phone. Unlimited 7-day pass ~$34.<br>
+      • <strong>Statue of Liberty</strong>: Staten Island Ferry is FREE and gives great views. Actual island visit costs ~$24 + book MONTHS ahead for crown access.<br>
+      • <strong>Top of the Rock</strong>: Better views of Empire State Building than Empire State itself. Book online to save time.<br>
+      • <strong>Broadway</strong>: Check TKTS booth in Times Square for 50% off same-day tickets!<br>
+      • <strong>Free fun</strong>: Brooklyn Bridge walk, Staten Island Ferry, all Smithsonians, Central Park, High Line, Washington Square Park — all free!<br>
+      • <strong>Akshardham</strong>: In Robbinsville, NJ (~45 min from Manhattan). Completely free but no phones inside.
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleDay(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>
