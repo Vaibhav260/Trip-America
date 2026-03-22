@@ -185,6 +185,20 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .ob5{background:var(--violet-lt);color:var(--violet)}
 
 /* ─── BOOKING TABLE ─── */
+/* ─── SWAP SUGGESTION ─── */
+.swap{margin:10px 0;border:2px dashed var(--gold-bd);border-radius:var(--radius);background:linear-gradient(135deg,#fefaf0 0%,#fff8e8 100%);padding:16px 18px;position:relative;overflow:hidden}
+.swap::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at 100% 0%,rgba(184,122,8,.06) 0%,transparent 70%)}
+.swap-badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);background:rgba(184,122,8,.1);padding:4px 10px;border-radius:100px;margin-bottom:10px}
+.swap-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px;line-height:1.3}
+.swap-vs{font-size:10px;color:var(--rose);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.swap-desc{font-size:11.5px;color:var(--muted);line-height:1.7;margin-bottom:8px}
+.swap-why{font-size:10.5px;color:var(--ink);font-weight:600;line-height:1.5;padding:8px 12px;background:rgba(184,122,8,.06);border-radius:8px;border-left:3px solid var(--gold)}
+.swap-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.swap-places{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin-top:10px}
+.swap-place{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.swap-place-name{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.swap-place-detail{font-size:10.5px;color:var(--muted);line-height:1.5}
+
 .tbl-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:18px;box-shadow:var(--shadow)}
 .b-table{width:100%;border-collapse:collapse;font-size:12px}
 .b-table th{text-align:left;padding:12px 16px;background:var(--surface);color:var(--muted);font-size:9.5px;letter-spacing:1px;text-transform:uppercase;font-weight:700;border-bottom:2px solid var(--border)}
@@ -584,6 +598,23 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
       <div class="sec-div">Hudson Yards → Midtown</div>
       <div class="te"><div class="te-t">2:45 PM</div><div class="te-dc"><div class="dot d-sky"></div></div><div class="te-body"><div class="card"><div class="cname"><span class="ico">🔩</span>The Vessel + Hudson Yards exterior</div><div class="cdesc">154 interconnected flights, 2,500-step honeycomb sculpture. Exterior free. Futuristic neighbourhood.</div><div class="ctags"><span class="ct ct-free">Exterior free · ~45 min</span></div></div></div></div>
       <div class="te"><div class="te-t">3:45 PM</div><div class="te-dc"><div class="dot d-teal"></div></div><div class="te-body"><div class="card"><div class="cname"><span class="ico">😌</span>Coffee break + rest · sit somewhere nearby</div><div class="ctags"><span class="ct ct-rest">Buffer · until ~4:30 PM</span></div></div></div></div>
+
+      <!-- ── SWAP SUGGESTION ── -->
+      <div style="padding:4px 0 4px 86px"><div class="swap">
+        <div class="swap-badge">💡 Suggested Upgrade</div>
+        <div class="swap-title">🌿 Walk the High Line + Chelsea Market + Little Island</div>
+        <div class="swap-vs">Instead of → subway to Rockefeller + waiting 50 min for your 6 PM ticket</div>
+        <div class="swap-desc">The High Line starts RIGHT HERE at Hudson Yards (30th St entrance). Walk the 1.5-mile elevated park south through wildflowers, public art, and stunning city views. Drop into Chelsea Market (at 15th St) for a quick snack in the famous food hall. Exit at Gansevoort St and walk 2 min to Little Island — a floating park on the Hudson with sunset views of the Statue of Liberty. Then subway to Top of the Rock for your 6 PM slot. Same arrival time, infinitely more memorable walk.</div>
+        <div class="swap-places">
+          <div class="swap-place"><div class="swap-place-name">🌿 The High Line</div><div class="swap-place-detail">3:30 PM → walk south · 45 min · FREE · elevated railway park with art + gardens</div></div>
+          <div class="swap-place"><div class="swap-place-name">🦞 Chelsea Market</div><div class="swap-place-detail">~4:15 PM → 15 min stop · FREE entry · grab a lobster roll or açaí bowl</div></div>
+          <div class="swap-place"><div class="swap-place-name">🌺 Little Island</div><div class="swap-place-detail">~4:35 PM → 20 min · FREE · floating park · tulip pillars · Hudson River views</div></div>
+          <div class="swap-place"><div class="swap-place-name">🚇 Subway to Top of Rock</div><div class="swap-place-detail">5:00 PM → A/C/E to 47-50 Rockefeller · 20 min · arrive by 5:25 PM for 6 PM ticket</div></div>
+        </div>
+        <div class="swap-why">Why this is better: You're currently taking a subway and sitting at Rockefeller Plaza for 50 min waiting for your ticket time. This swap fills that dead time with the #1 most iconic free attraction in NYC. The High Line literally starts at your feet at Hudson Yards.</div>
+      </div></div>
+      <!-- ── END SWAP ── -->
+
       <div class="te"><div class="te-t">4:30 PM</div><div class="te-dc"><div class="dot d-sky"></div></div><div class="te-body"><div class="card"><div class="cname"><span class="ico">🚇</span>Subway to Rockefeller Center · ~15 min</div></div></div></div>
       <div class="te"><div class="te-t">5:00 PM</div><div class="te-dc"><div class="dot d-gold"></div></div><div class="te-body"><div class="card"><div class="cname"><span class="ico">🌆</span>Rockefeller Center Plaza · free walk</div><div class="cdesc">Sunken plaza, gold Prometheus statue, Art Deco. Kill time before your 6 PM ticket.</div><div class="ctags"><span class="ct ct-free">FREE · ~50 min buffer</span></div></div></div></div>
       <div class="te"><div class="te-t">6:00 PM</div><div class="te-dc"><div class="dot d-rose"></div></div><div class="te-body"><div class="card card-rose"><div class="cname"><span class="ico">🏙️</span>TOP OF THE ROCK · 70th floor</div><div class="cdesc">BEST view in NYC — Empire State framed by Central Park and Lower Manhattan. 6 PM = golden sunset + city lighting up.</div><div class="ctags"><span class="ct ct-book">~$40 · Book 6 PM slot</span><span class="ct ct-star">Best NYC view ⭐ · until ~7:15 PM</span></div></div></div></div>
@@ -655,6 +686,22 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
       <div class="te"><div class="te-t">2:45 PM</div><div class="te-dc"><div class="dot d-teal"></div></div><div class="te-body"><div class="card"><div class="cname"><span class="ico">🏢</span>Flatiron Building + Madison Square Park</div><div class="ctags"><span class="ct ct-free">FREE · ~30 min</span></div></div></div></div>
       <div class="te"><div class="te-t">3:30 PM</div><div class="te-dc"><div class="dot d-orange"></div></div><div class="te-body"><div class="card"><div class="cname"><span class="ico">⚡</span>Harry Potter NYC Store · Broadway & 22nd</div><div class="cdesc">Free to browse. Wand shop, potion bar, butter beer. Largest HP store in the world.</div><div class="ctags"><span class="ct ct-free">FREE to browse · until ~5:00 PM</span></div></div></div></div>
       <div class="te"><div class="te-t">5:15 PM</div><div class="te-dc"><div class="dot d-green"></div></div><div class="te-body"><div class="card card-green"><div class="cname"><span class="ico">⛲</span>Washington Square Park</div><div class="cdesc">NYU arch, chess players, street performers. Peak Greenwich Village energy.</div><div class="ctags"><span class="ct ct-free">FREE · until ~6:30 PM</span></div></div></div></div>
+
+      <!-- ── SWAP SUGGESTION ── -->
+      <div style="padding:4px 0 4px 86px"><div class="swap">
+        <div class="swap-badge">💡 Suggested Add-On</div>
+        <div class="swap-title">🌺 Little Island at Sunset — FREE floating park</div>
+        <div class="swap-vs">Add between → Washington Square Park and dinner</div>
+        <div class="swap-desc">Little Island is a 2.4-acre park floating on 132 tulip-shaped concrete pillars over the Hudson River. Rolling hills, wildflowers, hidden paths, and a 700-seat amphitheater with free summer shows. The west-facing overlook has one of the best sunset views in Manhattan — Statue of Liberty glowing in golden light across the water. It's only a 10-minute walk west from Washington Square Park. FREE entry, open until 1 AM in summer.</div>
+        <div class="swap-places">
+          <div class="swap-place"><div class="swap-place-name">🚶 Walk west from WSP</div><div class="swap-place-detail">6:15 PM → 10 min walk via W 13th St to Pier 55</div></div>
+          <div class="swap-place"><div class="swap-place-name">🌺 Little Island</div><div class="swap-place-detail">6:30 PM → 45 min · FREE · walk the hills, catch sunset ~8:15 PM in June</div></div>
+          <div class="swap-place"><div class="swap-place-name">🍽️ Dinner after</div><div class="swap-place-detail">~7:15 PM → Walk back to West Village for dinner (still on schedule)</div></div>
+        </div>
+        <div class="swap-why">Why add this: You have a gap between WSP (ends ~6:30) and dinner (7:00). Little Island fills it perfectly — it's 10 min away, FREE, and June sunset at ~8:15 PM means you'd catch golden hour. Over 3 million visitors since opening. One of NYC's newest must-see spots.</div>
+      </div></div>
+      <!-- ── END SWAP ── -->
+
       <div class="te"><div class="te-t">7:00 PM</div><div class="te-dc"><div class="dot d-gold"></div></div><div class="te-body"><div class="card card-gold"><div class="cname"><span class="ico">🍽️</span>Dinner — Greenwich Village</div><div class="cdesc">Joe's Pizza, Carbone (reserve ahead), or Mamoun's Falafel.</div><div class="ctags"><span class="ct ct-food">until ~8:30 PM</span></div></div></div></div>
       <div class="te"><div class="te-t">8:30 PM</div><div class="te-dc"><div class="dot d-violet"></div></div><div class="te-body"><div class="card card-violet"><div class="cname"><span class="ico">🏘️</span>West Village cobblestone streets night walk</div><div class="cdesc">Most charming neighbourhood in NYC at night. Perry St, Bleecker St, Christopher St. Brownstones, tree-lined streets.</div><div class="ctags"><span class="ct ct-night">until ~9:15 PM</span></div></div></div></div>
       <div class="te"><div class="te-t">9:15 PM</div><div class="te-dc"><div class="dot d-sky"></div></div><div class="te-body"><div class="card card-sky"><div class="cname"><span class="ico">🚆</span>Walk to PATH at WTC or Christopher St → Newark Penn</div><div class="cdesc">Christopher St PATH station is right in the Village! Direct to Newark Penn. ~25 min.</div><div class="ctags"><span class="ct ct-tip">Christopher St PATH → Newark · 25 min</span></div></div></div></div>
@@ -673,6 +720,23 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
       <div class="te"><div class="te-t">12:30 PM</div><div class="te-dc"><div class="dot d-gold"></div></div><div class="te-body"><div class="card card-gold"><div class="cname"><span class="ico">🍽️</span>Lunch in SoHo</div><div class="ctags"><span class="ct ct-food">until ~1:45 PM</span></div></div></div></div>
       <div class="te"><div class="te-t">2:00 PM</div><div class="te-dc"><div class="dot d-sky"></div></div><div class="te-body"><div class="card"><div class="cname"><span class="ico">🚇</span>Subway to Times Square · ~15 min</div></div></div></div>
       <div class="te"><div class="te-t">2:30 PM</div><div class="te-dc"><div class="dot d-orange"></div></div><div class="te-body"><div class="card"><div class="cname"><span class="ico">🎭</span>Madame Tussauds Wax Museum</div><div class="ctags"><span class="ct ct-book">~$30 online</span><span class="ct ct-tip">~1.5 hrs · until ~4:00 PM</span></div></div></div></div>
+
+      <!-- ── SWAP SUGGESTION ── -->
+      <div style="padding:4px 0 4px 86px"><div class="swap">
+        <div class="swap-badge">💡 Strongly Recommended Swap</div>
+        <div class="swap-title">✨ SUMMIT One Vanderbilt — Immersive Infinity Rooms 93 Floors Up</div>
+        <div class="swap-vs">Instead of → Madame Tussauds ($30 wax figures)</div>
+        <div class="swap-desc">Mirrored infinity rooms 1,100 ft above Manhattan. Transparent glass sky boxes hovering over Madison Avenue. A balloon-filled room where your reflection multiplies infinitely. Kenzo Digital immersive art installations. Open-air terrace with 360° views. The entrance is literally inside Grand Central Terminal — which you're already visiting later this same day. Reviews consistently call it the single most photogenic and jaw-dropping experience in NYC. ~$40–45, timed entry.</div>
+        <div class="swap-places">
+          <div class="swap-place"><div class="swap-place-name">🚇 Subway to Grand Central</div><div class="swap-place-detail">2:15 PM → ~10 min from Times Sq to Grand Central (or walk 15 min)</div></div>
+          <div class="swap-place"><div class="swap-place-name">✨ SUMMIT One Vanderbilt</div><div class="swap-place-detail">2:30 PM → Entrance inside Grand Central · ~2 hrs · book timed entry online · ~$40–45</div></div>
+          <div class="swap-place"><div class="swap-place-name">📖 NY Public Library</div><div class="swap-place-detail">4:30 PM → 5 min walk west · continues the day exactly on schedule</div></div>
+        </div>
+        <div class="swap-why">Why swap: Same price (~$30–40), same time slot (1.5–2 hrs), same area (Midtown). But Summit is a genuinely world-class, once-in-a-lifetime immersive experience with 5,500+ five-star reviews — while Madame Tussauds is… wax. Summit's entrance is inside Grand Central, which you're already visiting that evening. Book the 2:30 PM timed slot online.</div>
+        <div class="swap-tags"><span class="ct ct-book">~$40–45 · Book timed entry</span><span class="ct ct-star">5,500+ ★★★★★ reviews</span><span class="ct ct-tip">Entrance inside Grand Central</span></div>
+      </div></div>
+      <!-- ── END SWAP ── -->
+
       <div class="te"><div class="te-t">4:15 PM</div><div class="te-dc"><div class="dot d-teal"></div></div><div class="te-body"><div class="card card-teal"><div class="cname"><span class="ico">📖</span>New York Public Library · 10 min walk</div><div class="cdesc">Rose Main Reading Room — jaw-dropping Beaux-Arts ceiling, 78 ft high. FREE.</div><div class="ctags"><span class="ct ct-free">FREE · until ~5:15 PM</span></div></div></div></div>
       <div class="te"><div class="te-t">5:20 PM</div><div class="te-dc"><div class="dot d-gold"></div></div><div class="te-body"><div class="card"><div class="cname"><span class="ico">🚂</span>Grand Central Terminal · 10 min walk east</div><div class="cdesc">Whispering Gallery, Celestial Ceiling (zodiac painted backward). FREE.</div><div class="ctags"><span class="ct ct-free">FREE · until ~6:00 PM</span></div></div></div></div>
       <div class="te"><div class="te-t">6:15 PM</div><div class="te-dc"><div class="dot d-gold"></div></div><div class="te-body"><div class="card card-gold"><div class="cname"><span class="ico">🍽️</span>Dinner — Koreatown 32nd St</div><div class="cdesc">BCD Tofu House, Kunjip, or Wonjo for BBQ. 5 min walk from Grand Central.</div><div class="ctags"><span class="ct ct-food">until ~7:45 PM</span></div></div></div></div>
@@ -754,7 +818,8 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
         <tr><td class="bd">Jun 16</td><td class="bw">🏙️ Top of the Rock — 6 PM slot</td><td class="bn">~$40 — book timed entry, specify 6 PM</td></tr>
         <tr><td class="bd">Jun 16</td><td class="bw">🧲 Mercer Labs</td><td class="bn">Book in advance — sells out</td></tr>
         <tr><td class="bd">Jun 17</td><td class="bw">🗽 Statue of Liberty ferry</td><td class="bn">Only if going to island. Staten Island Ferry is FREE.</td></tr>
-        <tr><td class="bd">Jun 20</td><td class="bw">🎭 Madame Tussauds</td><td class="bn">~$30 — cheaper online</td></tr>
+        <tr><td class="bd">Jun 20</td><td class="bw">✨ Summit One Vanderbilt (if swapping Madame Tussauds)</td><td class="bn">~$40–45 · Book 2:30 PM timed entry · entrance inside Grand Central</td></tr>
+        <tr><td class="bd">Jun 20</td><td class="bw">🎭 Madame Tussauds (if keeping original)</td><td class="bn">~$30 — cheaper online</td></tr>
         <tr><td class="bd">Jun 23</td><td class="bw">✈️ Book flight from EWR (Newark)</td><td class="bn">EWR is 10 min from home! Don't book JFK/LGA.</td></tr>
       </tbody>
     </table>
